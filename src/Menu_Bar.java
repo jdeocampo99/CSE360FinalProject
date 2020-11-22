@@ -4,18 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class Menu_Bar implements ActionListener {
+public class Menu_Bar extends Main implements ActionListener {
     //Initializing gui elements
     static JMenuBar menubar;
     static JMenu file_menu, about_menu;
     static JMenuItem load_roster, add_attendance, save, plot_data, about_team;
-    JTextArea infopage;
-    String message = String.join("\n", "Team Members:","Justin De Ocampo","Rebecca Kraft","Kevin Weinhold");
 
+    //Renders the menu bar and its sub components
     public JMenuBar createMenuBar()  {
         menubar = new JMenuBar();
-        //TODO: Figure out how to change the color of the menu bar to white
-
         //initializing file menu and its items
         file_menu = new JMenu("File");
         load_roster = new JMenuItem("Load a Roster");
@@ -35,13 +32,16 @@ public class Menu_Bar implements ActionListener {
         //add the menus to the menu bar
         menubar.add(file_menu);
         menubar.add(about_menu);
+        menubar.setOpaque(true);
         menubar.setBackground(Color.WHITE);
-
-        //setting the size of the frame and making it visible
 
         //adding event action listeners to each button in the menu
         load_roster.addActionListener(this);
         about_team.addActionListener(this);
+        save.addActionListener(this);
+        add_attendance.addActionListener(this);
+        plot_data.addActionListener(this);
+
         return menubar;
     }
 
@@ -52,17 +52,23 @@ public class Menu_Bar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         JMenuItem command = (JMenuItem) (e.getSource());
-        if (command.getText() == "Load a Roster")
-        {
 
-            final JFileChooser fc = new JFileChooser();
-            fc.showSaveDialog(null);
-            File selectedFile = fc.getSelectedFile();
+        switch(command.getText()){
+            case ("Load a Roster"):
+                RosterLoader loader = new RosterLoader();
+                loader.chooseFileAndReadInfo();
+                break;
+            case ("Save"):
+                break;
+            case ("Add Attendance"):
+                break;
+            case("Plot Data"):
+                break;
+            case ("Team Information"):
+                AboutMenu about_menu = new AboutMenu();
+                about_menu.createAboutMenu();;
+                break;
 
-        }
-        else if (command.getText() == "Team Information")
-        {
-            JOptionPane.showMessageDialog(infopage , message);
         }
     }
 }

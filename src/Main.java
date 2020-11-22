@@ -22,9 +22,10 @@ public class Main extends JFrame {
         frame.setJMenuBar(m.createMenuBar());
 
         //Display the window.
-        frame.setSize(500, 500);
+        frame.setSize(800, 500);
         frame.setVisible(true);
     }
+
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
