@@ -12,10 +12,12 @@ public class Saver extends DataTable{
 
     public void exportToCSV() {
 
+        //Create a file chooser so the user can export the file to any location they wish
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int result = chooser.showSaveDialog(null);
 
+        //If they click the approve option, then save the file to the selected location
         if (result == JFileChooser.APPROVE_OPTION) {
             try {
 
@@ -23,12 +25,14 @@ public class Saver extends DataTable{
                 System.out.println(chooser.getSelectedFile());
                 FileWriter csv = new FileWriter(new File(String.valueOf(chooser.getSelectedFile())) + ".csv");
 
+                //Writing the column headers to the CSV
                 for (int i = 0; i < model.getColumnCount(); i++) {
                     csv.write(model.getColumnName(i) + ",");
                 }
 
                 csv.write("\n");
 
+                //Writing the body of the table to the CSV
                 for (int i = 0; i < model.getRowCount(); i++) {
                     for (int j = 0; j < model.getColumnCount(); j++) {
                         csv.write(model.getValueAt(i, j).toString() + ",");
@@ -36,6 +40,7 @@ public class Saver extends DataTable{
                     csv.write("\n");
                 }
 
+                //Close the file writer
                 csv.close();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -13,22 +13,22 @@ public class RosterLoader extends Menu_Bar {
         try{
             //Open JFileChooser to select file
             final JFileChooser fc = new JFileChooser();
-            fc.showSaveDialog(null);
-            selectedFile = fc.getSelectedFile();
+            int result = fc.showSaveDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION){
+                selectedFile = fc.getSelectedFile();
 
-            //read through the selected file and save each row as an array of strings
-            BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-            String line;
-            String[] current_row;
-            //Save each row as an array of strings, add that to our final array list
-            while ((line = reader.readLine()) != null){
-                current_row = line.split(",");
-                tableInfo.add(current_row);
+                //read through the selected file and save each row as an array of strings
+                BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
+                String line;
+                String[] current_row;
+                //Save each row as an array of strings, add that to our final array list
+                while ((line = reader.readLine()) != null){
+                    current_row = line.split(",");
+                    tableInfo.add(current_row);
+                }
+                //Create the Jtable based on the arraylist information that we have
+                createTable();
             }
-
-            //Create the Jtable based on the arraylist information that we have
-            createTable();
-
         }
         //Catching errors
         catch(FileNotFoundException e){
