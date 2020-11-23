@@ -6,10 +6,14 @@ import java.io.File;
 
 public class Menu_Bar extends Main implements ActionListener {
     //Initializing gui elements
+
     static JMenuBar menubar;
     static JMenu file_menu, about_menu;
     static JMenuItem load_roster, add_attendance, save, plot_data, about_team;
 
+    // initialize the data table so we can globally modify it
+
+    static DataTable data;
     //Renders the menu bar and its sub components
     public JMenuBar createMenuBar()  {
         menubar = new JMenuBar();

@@ -9,12 +9,14 @@ import java.util.ArrayList;
 //Displays the Jtable data
 public class DataTable extends RosterLoader {
     static JTable table;
+    // TODO: figure out why this Cannot be made public
+    public DefaultTableModel tableModel;
     //Renders the JTable inside of a scrollpane
     public void renderTable () {
         //Creating the column headers array
         String[] column_titles = {"ID", "First Name","Last Name", "Program", "Level", "ASURITE"};
 
-        DefaultTableModel tableModel = new DefaultTableModel(column_titles,0);
+        tableModel = new DefaultTableModel(column_titles,0);
 
         //Creating our table and setting constraints
         table = new JTable(tableModel);
@@ -32,6 +34,12 @@ public class DataTable extends RosterLoader {
         JScrollPane scroller = new JScrollPane(table);
         frame.add(scroller);
         frame.revalidate();
+
+    }
+    public void updateColumns(String s){
+
+        // updating Column
+        tableModel.addColumn(s);
 
     }
 

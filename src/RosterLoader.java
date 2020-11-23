@@ -40,7 +40,7 @@ public class RosterLoader extends Menu_Bar {
     }
 
     public void createTable(){
-        DataTable data = new DataTable();
+        data = new DataTable();
         data.renderTable();
 
     }

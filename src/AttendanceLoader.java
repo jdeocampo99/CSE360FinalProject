@@ -12,6 +12,7 @@ public class AttendanceLoader extends Menu_Bar {
 
     public void chooseAttendanceFile(){
         try{
+            //chooses the attendance CSV and reads from it
             final JFileChooser fc = new JFileChooser();
             int result = fc.showSaveDialog(null);
             if (result == JFileChooser.APPROVE_OPTION){
@@ -26,7 +27,7 @@ public class AttendanceLoader extends Menu_Bar {
                     current_row = line.split(",");
                     tableInfo.add(current_row);
                 }
-                //add to the previous JTable
+                //TODO: add to the previous JTable
 
             }
         }
@@ -38,16 +39,18 @@ public class AttendanceLoader extends Menu_Bar {
             System.out.println("Error: Invalid CSV");
         }
     }
-    public static JButton inputButton = new JButton("Send");
-    public static JTextArea editTextArea = new JTextArea("Type Here!");
-    public static JTextArea uneditTextArea = new JTextArea();
 
-    public void pickDate(){
-        createWindow();
+    public String pickDate(){
+
+        String input = createWindow();
+
 
         System.out.println("Hey THere");
+
+        return input;
     }
-    private static void createWindow() {
+    private static String createWindow() {
+        final String[] input = {""};
         JFrame frame = new JFrame("Swing Tester");
         JTextField jt = new JTextField("Enter Date");
         frame.add(jt);
@@ -55,21 +58,21 @@ public class AttendanceLoader extends Menu_Bar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // get date as a string
-                String input = jt.getText();
-                System.out.println(input);
+                input[0] = jt.getText();
+                System.out.println(input[0]);
+
+                // Update the original file with new Columns of the date we chose
+                data.updateColumns(input[0]);
+
             }
         });
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createUI(frame);
+
+
         frame.setSize(560, 200);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        System.out.println(input[0]);
+        return input[0];
     }
-    private static void createUI(final JFrame frame){
-//        JPanel panel = new JPanel();
-//        LayoutManager layout = new FlowLayout();
-//        panel.setLayout(layout);
-        JButton button = new JButton("Click here");
 
-    }
 }
