@@ -63,6 +63,11 @@ public class Menu_Bar extends Main implements ActionListener {
                 save.exportToCSV();
                 break;
             case ("Add Attendance"):
+                AttendanceLoader loader2 = new AttendanceLoader();
+                // add date
+                loader2.pickDate();
+                //add file
+                //loader2.chooseAttendanceFile();
                 break;
             case("Plot Data"):
                 break;

@@ -16,7 +16,6 @@ public class Main extends JFrame {
     private static void createAndShowGUI() {
         //Create and set up the window.
         frame = new JFrame("CSE 360 Final Project");
-
         //Adding the menu bar to the frame
         Menu_Bar m = new Menu_Bar();
         frame.setJMenuBar(m.createMenuBar());
