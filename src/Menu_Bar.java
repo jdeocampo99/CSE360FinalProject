@@ -59,6 +59,8 @@ public class Menu_Bar extends Main implements ActionListener {
                 loader.chooseFileAndReadInfo();
                 break;
             case ("Save"):
+                Saver save = new Saver();
+                save.exportToCSV();
                 break;
             case ("Add Attendance"):
                 break;

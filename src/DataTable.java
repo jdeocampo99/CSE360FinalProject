@@ -8,13 +8,7 @@ import java.util.ArrayList;
 
 //Displays the Jtable data
 public class DataTable extends RosterLoader {
-    ArrayList<String[]> tableInfo;
-
-    public DataTable(ArrayList<String[]> tableInfo){
-        this.tableInfo = tableInfo;
-    }
-
-
+    static JTable table;
     //Renders the JTable inside of a scrollpane
     public void renderTable () {
         //Creating the column headers array
@@ -23,7 +17,7 @@ public class DataTable extends RosterLoader {
         DefaultTableModel tableModel = new DefaultTableModel(column_titles,0);
 
         //Creating our table and setting constraints
-        JTable table = new JTable(tableModel);
+        table = new JTable(tableModel);
         table.setBounds(30,40,200,300);
 
         //Setting the header to white
