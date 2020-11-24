@@ -26,7 +26,7 @@ public class RosterLoader extends Menu_Bar {
                 //Save each row as an array of strings, add that to our final array list
                 while ((line = reader.readLine()) != null){
                     current_row = line.split(",");
-                    System.out.println(Arrays.toString(current_row));
+                    //System.out.println(Arrays.toString(current_row));
                     tableInfo.add(current_row);
                 }
                 //Create the Jtable based on the arraylist information that we have
