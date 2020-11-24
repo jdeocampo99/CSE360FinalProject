@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.*;
 
 public class Menu_Bar extends Main implements ActionListener {
     //Initializing gui elements
@@ -14,6 +15,9 @@ public class Menu_Bar extends Main implements ActionListener {
     // initialize the data table so we can globally modify it
 
     static DataTable data;
+
+    // initalize tableInfo
+    static ArrayList<String[]> tableInfo;
     //Renders the menu bar and its sub components
     public JMenuBar createMenuBar()  {
         menubar = new JMenuBar();
@@ -69,9 +73,9 @@ public class Menu_Bar extends Main implements ActionListener {
             case ("Add Attendance"):
                 AttendanceLoader loader2 = new AttendanceLoader();
                 // add date
-                loader2.pickDate();
+                //loader2.pickDate();
                 //add file
-                //loader2.chooseAttendanceFile();
+                loader2.chooseAttendanceFile();
                 break;
             case("Plot Data"):
                 break;

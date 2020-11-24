@@ -1,16 +1,20 @@
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class AttendanceLoader extends Menu_Bar {
-    File selectedFile = null;
-    static ArrayList<String[]> tableInfo = new ArrayList<>();
 
+
+    File selectedFile = null;
+    Vector<String> times = new Vector<>();
+    static ArrayList<String[]> attendanceInfo = new ArrayList<>();
     public void chooseAttendanceFile(){
+
         try{
             //chooses the attendance CSV and reads from it
             final JFileChooser fc = new JFileChooser();
@@ -25,10 +29,36 @@ public class AttendanceLoader extends Menu_Bar {
                 //Save each row as an array of strings, add that to our final array list
                 while ((line = reader.readLine()) != null){
                     current_row = line.split(",");
-                    tableInfo.add(current_row);
+                    attendanceInfo.add(current_row);
+                    // will probably have to do my times vector calculation here ish
+                    //System.out.println("\n\nTable Info: \n" + tableInfo + "\n\n Attendance Info: \n" + attendanceInfo);
                 }
-                //TODO: add to the previous JTable
 
+                //TODO: add to the previous JTable
+                // go through rows, maybe start after the row that contains [ASURITE time]
+
+                Object[] arr = tableInfo.toArray();
+                System.out.println("\n\narr = tableInfo.toArray(): \n " + Arrays.toString(arr));
+
+                for(int i = 0; i < tableInfo.size(); i++){
+                    // EDIT the times vector here!
+                    //if tableInfo name matches attendanceInfo Name
+                    for(int j = 0; j < attendanceInfo.size(); j++){
+                        if(tableInfo.get(i)[1].equals(attendanceInfo.get(j)[0])){
+                            // add the appropiate time to the times vector
+                            times.add(attendanceInfo.get(j)[1]);
+                        }
+                    }
+
+                }
+                System.out.println("\n Times values in attendanceFile: " + times.toString());
+
+                Vector<Integer> temp = new Vector<>();
+                temp.add(10);
+                temp.add(20);
+                temp.add(30);
+                pickDate(temp);
+                //data.updateColumns(date, times);
             }
         }
         //Catching errors
@@ -40,16 +70,17 @@ public class AttendanceLoader extends Menu_Bar {
         }
     }
 
-    public String pickDate(){
+    public String pickDate(Vector<Integer> times){
 
-        String input = createWindow();
+        String input = createWindow(times);
 
 
         System.out.println("Hey THere");
 
         return input;
     }
-    private static String createWindow() {
+
+    private static String createWindow(Vector<Integer> times) {
         final String[] input = {""};
         JFrame frame = new JFrame("Swing Tester");
         JTextField jt = new JTextField("Enter Date");
@@ -59,19 +90,20 @@ public class AttendanceLoader extends Menu_Bar {
             public void actionPerformed(ActionEvent e) {
                 // get date as a string
                 input[0] = jt.getText();
-                System.out.println(input[0]);
 
+                System.out.println("Input value: " + input[0]);
+                System.out.println("\nTimes value: " + times.toString());
+                data.updateColumns(input[0], times);
                 // Update the original file with new Columns of the date we chose
-                data.updateColumns(input[0]);
+                //data.updateColumns(input[0]);
 
             }
         });
 
-
         frame.setSize(560, 200);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        System.out.println(input[0]);
+
         return input[0];
     }
 

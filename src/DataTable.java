@@ -2,14 +2,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.util.*;
 import java.util.ArrayList;
 
 //TODO: this class will probably be implemented as an interface later since we have to create two types of tables for the project
-
+//TODO: might have to make a second DataTable to update tableModel with AttendanceLoader
 //Displays the Jtable data
 public class DataTable extends RosterLoader {
     static JTable table;
-    // TODO: figure out why this Cannot be made public
     public DefaultTableModel tableModel;
     //Renders the JTable inside of a scrollpane
     public void renderTable () {
@@ -36,10 +36,11 @@ public class DataTable extends RosterLoader {
         frame.revalidate();
 
     }
-    public void updateColumns(String s){
+    public void updateColumns(String date, Vector<Integer> times ){
+        // updating Column, potential to add a vector of the times
+        // create a list of times that corresponds to what we need to add
 
-        // updating Column
-        tableModel.addColumn(s);
+        tableModel.addColumn(date, times);
 
     }
 

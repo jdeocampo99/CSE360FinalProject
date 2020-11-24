@@ -6,11 +6,13 @@ import java.util.*;
 public class RosterLoader extends Menu_Bar {
 
     File selectedFile = null;
-    static ArrayList<String[]> tableInfo = new ArrayList<>();
+
 
     //creates the J File Chooser and reads in the data from the CSV and saves it to a 2d array
     public void chooseFileAndReadInfo(){
+        tableInfo = new ArrayList<>();
         try{
+
             //Open JFileChooser to select file
             final JFileChooser fc = new JFileChooser();
             int result = fc.showSaveDialog(null);
@@ -24,6 +26,7 @@ public class RosterLoader extends Menu_Bar {
                 //Save each row as an array of strings, add that to our final array list
                 while ((line = reader.readLine()) != null){
                     current_row = line.split(",");
+                    System.out.println(Arrays.toString(current_row));
                     tableInfo.add(current_row);
                 }
                 //Create the Jtable based on the arraylist information that we have
