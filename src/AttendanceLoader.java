@@ -38,18 +38,20 @@ public class AttendanceLoader extends Menu_Bar {
                 // go through rows, maybe start after the row that contains [ASURITE time]
 
                 Object[] arr = tableInfo.toArray();
-                System.out.println("\n\narr = tableInfo.toArray(): \n " + Arrays.toString(arr));
-
+                System.out.println("\n\nArrays.toString(tableInfo.toArray()) \n " + Arrays.toString(tableInfo.toArray()));
+                System.out.println("\n\ntableInfo.size() \n " + tableInfo.size() + "\nArrays.toString(attendanceInfo.toArray())\n" + Arrays.toString(attendanceInfo.toArray()));
                 for(int i = 0; i < tableInfo.size(); i++){
                     // EDIT the times vector here!
                     //if tableInfo name matches attendanceInfo Name
                     for(int j = 0; j < attendanceInfo.size(); j++){
-                        if(tableInfo.get(i)[1].equals(attendanceInfo.get(j)[0])){
+                        System.out.println("\ntableInfo.get(i)[1]: " + tableInfo.get(i)[5]
+                        + "\nattendanceInfo.get(j)[0]): " + attendanceInfo.get(j)[0] + "\n");
+                        if(tableInfo.get(i)[5].equals(attendanceInfo.get(j)[0])){
                             // add the appropiate time to the times vector
+                            System.out.println("times.add BRO");
                             times.add(attendanceInfo.get(j)[1]);
                         }
                     }
-
                 }
                 System.out.println("\n Times values in attendanceFile: " + times.toString());
 
@@ -57,7 +59,7 @@ public class AttendanceLoader extends Menu_Bar {
                 temp.add(10);
                 temp.add(20);
                 temp.add(30);
-                pickDate(temp);
+                pickDate(times);
                 //data.updateColumns(date, times);
             }
         }
@@ -70,7 +72,7 @@ public class AttendanceLoader extends Menu_Bar {
         }
     }
 
-    public String pickDate(Vector<Integer> times){
+    public String pickDate(Vector<String> times){
 
         String input = createWindow(times);
 
@@ -80,7 +82,7 @@ public class AttendanceLoader extends Menu_Bar {
         return input;
     }
 
-    private static String createWindow(Vector<Integer> times) {
+    private static String createWindow(Vector<String> times) {
         final String[] input = {""};
         JFrame frame = new JFrame("Swing Tester");
         JTextField jt = new JTextField("Enter Date");

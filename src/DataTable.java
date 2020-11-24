@@ -41,7 +41,7 @@ public class DataTable extends RosterLoader {
         frame.revalidate();
 
     }
-    public void updateColumns(String date, Vector<Integer> times ){
+    public void updateColumns(String date, Vector<String> times ){
         // updating Column, potential to add a vector of the times
         // create a list of times that corresponds to what we need to add
 
