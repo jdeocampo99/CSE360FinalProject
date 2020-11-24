@@ -21,7 +21,8 @@ public class DataTable extends RosterLoader {
         //Creating our table and setting constraints
         table = new JTable(tableModel);
         table.setBounds(30,40,200,300);
-
+        //table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); this is incase we need it not to fit to size
+        
         //Setting the header to white
         JTableHeader tableHeader = table.getTableHeader();
         tableHeader.setBackground(Color.WHITE);
@@ -32,6 +33,10 @@ public class DataTable extends RosterLoader {
         }
 
         JScrollPane scroller = new JScrollPane(table);
+        JScrollBar hbar=new JScrollBar(JScrollBar.HORIZONTAL);
+        JScrollBar vbar=new JScrollBar(JScrollBar.VERTICAL);
+        frame.add(hbar,BorderLayout.SOUTH);
+        frame.add(vbar,BorderLayout.EAST);
         frame.add(scroller);
         frame.revalidate();
 
