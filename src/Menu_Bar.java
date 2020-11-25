@@ -8,13 +8,13 @@ import java.util.*;
 public class Menu_Bar extends Main implements ActionListener {
     //Initializing gui elements
 
-    static JMenuBar menubar;
-    static JMenu file_menu, about_menu;
-    static JMenuItem load_roster, add_attendance, save, plot_data, about_team;
+    private static JMenuBar menubar;
+    private static JMenu file_menu, about_menu;
+    private static JMenuItem load_roster, add_attendance, save, plot_data, about_team;
 
     // initialize the data table so we can globally modify it
 
-    static DataTable data;
+    protected static DataTable data;
 
     // initalize tableInfo
     static ArrayList<String[]> tableInfo;

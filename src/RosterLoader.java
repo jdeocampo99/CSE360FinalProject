@@ -5,7 +5,7 @@ import java.util.*;
 
 public class RosterLoader extends Menu_Bar {
 
-    File selectedFile = null;
+    private File selectedFile = null;
 
 
     //creates the J File Chooser and reads in the data from the CSV and saves it to a 2d array
@@ -42,7 +42,7 @@ public class RosterLoader extends Menu_Bar {
         }
     }
 
-    public void createTable(){
+    private void createTable(){
         data = new DataTable();
         data.renderTable();
 

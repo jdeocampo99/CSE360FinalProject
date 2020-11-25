@@ -8,9 +8,10 @@ import java.awt.event.ActionListener;
 public class AttendanceLoader extends Menu_Bar {
 
 
-    File selectedFile = null;
-    Vector<String> times = new Vector<>();
-    static ArrayList<String[]> attendanceInfo = new ArrayList<>();
+    private File selectedFile = null;
+    private Vector<String> times = new Vector<>();
+    public static ArrayList<String[]> attendanceInfo = new ArrayList<>();
+
     public void chooseAttendanceFile(){
         try{
             // clear the previous data

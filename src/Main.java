@@ -8,7 +8,7 @@ import java.io.File;
 
 
 public class Main extends JFrame {
-    static JFrame frame;
+    public static JFrame frame;
 
     /**
      * Creates and makes the GUI visible
