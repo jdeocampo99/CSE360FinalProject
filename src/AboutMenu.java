@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class AboutMenu {
-    String message = String.join("\n", "Team Members:","Justin De Ocampo","Rebecca Kraft","Kevin Weinhold");
+    String message = String.join("\n", "Team Members:","Justin De Ocampo","Rebecca Kraft","Kevin Weinhold","Ishrar Zaman");
     JTextArea infopage;
 
     /**
