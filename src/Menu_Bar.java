@@ -75,6 +75,8 @@ public class Menu_Bar extends Main implements ActionListener {
                 loader2.chooseAttendanceFile();
                 break;
             case("Plot Data"):
+                ScatterPlot plot = new ScatterPlot();
+                plot.createDataset();
                 break;
             case ("Team Information"):
                 AboutMenu about_menu = new AboutMenu();
