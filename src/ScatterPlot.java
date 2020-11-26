@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.Vector;
+
 import org.jfree.chart.*;
 import org.jfree.chart.plot.*;
 import org.jfree.chart.plot.XYPlot;
@@ -7,54 +9,34 @@ import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
 
-public class ScatterPlot extends AttendanceLoader{
+public class ScatterPlot extends DataTable{
     XYDataset dataset = createDataset();
 
     XYDataset createDataset()
     {
         XYSeriesCollection dataset = new XYSeriesCollection();
+        int numStudents = table.getRowCount();
+        double percentAttendance;
+        int studentCount;
 
-        /*
-        for(int i = 0; i<times.size(); i++) {
-            XYSeries attendance1 = new XYSeries(times.elementAt(i));
-            //here i was trying to set the series variables for each new attendance date
-            //but idk how to make new variables in the for loop
+        for(int i =6; i<table.getColumnCount(); i++)
+        {
+            XYSeries series = new XYSeries((String)table.getColumnName(i));
+            for(int j =0; j<numStudents; j++)
+            {
+                studentCount = 0;
+                for(int k = 0; k<numStudents; k++)
+                {
+                    if (Integer.parseInt((String)table.getValueAt(k,i)) == Integer.parseInt((String)table.getValueAt(j,i))) {
+                        studentCount++;
+                    }
+                }
+                percentAttendance = (Double.parseDouble((String)table.getValueAt(j,i))/75)*100;
+                series.add(percentAttendance,studentCount);
+            }
+            dataset.addSeries(series);
         }
-        System.out.println(attendanceInfo.get(0)[1]);
-        //System.out.println(attendanceInfo.get(0)[2]);
-        return dataset;
-        */
 
-        //TEST DATA
-        //Just using manual inputs to test the formatting of the scatter plot
-        //Still need to find out how to read data from the file and add to scatter plot
-        XYSeries series1 = new XYSeries("Jan 22");
-        series1.add(1,11);
-        series1.add(2,12);
-        series1.add(3,15);
-        series1.add(4,16.2);
-        series1.add(5,17.5);
-        series1.add(6,19.5);
-        series1.add(7,21);
-        series1.add(8,22);
-        series1.add(9,23.5);
-        series1.add(10,23.6);
-
-        dataset.addSeries(series1);
-
-        XYSeries series2 = new XYSeries("Jan 23");
-        series2.add(1,11.1);
-        series2.add(2,12.1);
-        series2.add(3,15.1);
-        series2.add(4,16.3);
-        series2.add(5,17.6);
-        series2.add(6,19.6);
-        series2.add(7,21.1);
-        series2.add(8,22.1);
-        series2.add(9,23.6);
-        series2.add(10,23.7);
-
-        dataset.addSeries(series2);
 
         createWindow(dataset);
         return dataset;
