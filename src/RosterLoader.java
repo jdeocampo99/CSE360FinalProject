@@ -1,3 +1,24 @@
+/**
+ * Name			Rebecca Kraft
+ *				Justin De Ocampo
+ *				Kevin Weinhold
+ *				Ishrar Zaman
+ * 				Lingge Zhang
+ *
+ * Email 		rmkraft@asu.edu
+ * 				jcdeocam@asu.edu
+ * 				kweinho2@asu.edu
+ *				izaman1@asu.edu
+ * 				lzhan264@asu.edu
+ *
+ * Class		CSE 360	70605
+ * Final Project
+ *
+ * This class asks users to load a roster file.
+ *
+ * @author
+ *
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -8,7 +29,9 @@ public class RosterLoader extends Menu_Bar {
     private File selectedFile = null;
 
 
-    //creates the J File Chooser and reads in the data from the CSV and saves it to a 2d array
+    /**
+     * creates the J File Chooser and reads in the data from the CSV and saves it to a 2d array
+     */
     public void chooseFileAndReadInfo(){
         tableInfo = new ArrayList<>();
         try{
