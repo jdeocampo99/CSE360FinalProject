@@ -1,6 +1,15 @@
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.Array;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,19 +17,17 @@ import java.awt.event.ActionListener;
 public class AttendanceLoader extends Menu_Bar {
 
 
-    private File selectedFile = null;
-    private Vector<String> times = new Vector<>();
-    public static ArrayList<String[]> attendanceInfo = new ArrayList<>();
+    File selectedFile = null;
+    Vector<String> times = new Vector<>();
+    static ArrayList<String[]> attendanceInfo = new ArrayList<>();
 
-    public void chooseAttendanceFile(){
-        try{
-            // clear the previous data
-            times.clear();
-            attendanceInfo.clear();
+    public void chooseAttendanceFile() {
+
+        try {
             //chooses the attendance CSV and reads from it
             final JFileChooser fc = new JFileChooser();
             int result = fc.showSaveDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION){
+            if (result == JFileChooser.APPROVE_OPTION) {
                 selectedFile = fc.getSelectedFile();
 
                 //read through the selected file and save each row as an array of strings
@@ -28,75 +35,103 @@ public class AttendanceLoader extends Menu_Bar {
                 String line;
                 String[] current_row;
                 //Save each row as an array of strings, add that to our final array list
-                while ((line = reader.readLine()) != null){
+                while ((line = reader.readLine()) != null) {
                     current_row = line.split(",");
                     attendanceInfo.add(current_row);
+                    // will probably have to do my times vector calculation here ish
+                    //System.out.println("\n\nTable Info: \n" + tableInfo + "\n\n Attendance Info: \n" + attendanceInfo);
                 }
 
+                //TODO: add to the previous JTable
+                // go through rows, maybe start after the row that contains [ASURITE time]
 
-                //Implement map that contains asurite ID's, if multiple have been encountered,
-                // add the numbers together before adding it to times.
-                // We may need a temporary vector to then add to times later
-                // SO, we make a map that gets adds every ASURITE ID and initializes the value to 0
-                int tNum = 0;
-                Map<String, Integer> attendanceMap = new HashMap<String, Integer>(){{
-                    for(int i = 0; i < tableInfo.size(); i++){
-                        // add every ASURITE ID to a Map
-                        //myMap[tableInfo.get(i)[5]] = 0;
-                        put(tableInfo.get(i)[5], tNum);
-                    }
-                }};
-
-                // iterate through attendanceInfo
-                for(int j = 0; j < attendanceInfo.size(); j++){
-                    // if the hash set of ASURITE ID's matches the attendanceInfo
-                    if(attendanceMap.containsKey(attendanceInfo.get(j)[0])){
-                        // if the person has multiple inputs, add together their minutes
-                        //map.put(key, map.get(key) + value);
-                        //map.put(key, (previous value) + current value);
-                        attendanceMap.put(attendanceInfo.get(j)[0], attendanceMap.get(attendanceInfo.get(j)[0]) + Integer.parseInt(attendanceInfo.get(j)[1]));
+                Object[] arr = tableInfo.toArray();
+                System.out.println("\n\nArrays.toString(tableInfo.toArray()) \n " + Arrays.toString(tableInfo.toArray()));
+                System.out.println("\n\ntableInfo.size() \n " + tableInfo.size() + "\nArrays.toString(attendanceInfo.toArray())\n" + Arrays.toString(attendanceInfo.toArray()));
+                for (int i = 0; i < tableInfo.size(); i++) {
+                    // EDIT the times vector here!
+                    //if tableInfo name matches attendanceInfo Name
+                    for (int j = 0; j < attendanceInfo.size(); j++) {
+                        System.out.println("\ntableInfo.get(i)[1]: " + tableInfo.get(i)[5]
+                                + "\nattendanceInfo.get(j)[0]): " + attendanceInfo.get(j)[0] + "\n");
+                        if (tableInfo.get(i)[5].equals(attendanceInfo.get(j)[0])) {
+                            // add the appropiate time to the times vector
+                            System.out.println("times.add BRO");
+                            times.add(attendanceInfo.get(j)[1]);
+                        }
                     }
                 }
+                System.out.println("\n Times values in attendanceFile: " + times.toString());
 
-                // iterate through tableInfo so we are in order
-                for(String[] row : tableInfo){
-                    // add the value of the row to times
-                    //times.add(myMap[row[5]]);
-                    times.add(Integer.toString(attendanceMap.get(row[5])));
-                }
-                // once we obtain full times vector, we pick the date and GO
+                Vector<Integer> temp = new Vector<>();
+                temp.add(10);
+                temp.add(20);
+                temp.add(30);
                 pickDate(times);
                 //data.updateColumns(date, times);
             }
         }
         //Catching errors
-        catch(FileNotFoundException e){
+        catch (FileNotFoundException e) {
             System.out.println("Error: file not found!");
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Error: Invalid CSV");
         }
     }
+//dont think this class is needed anymore
+    public String pickDate(Vector<String> times) {
 
-    public void pickDate(Vector<String> times){
+        String input = createWindow(times);
 
-        createWindow(times);
+
+        System.out.println("Hey THere");
+
+        return input;
+    }
+
+//need this class for date picker
+    public static class DateLabelFormatter extends AbstractFormatter {
+        private String datePattern = "MM-dd-yyyy";
+        private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+
+        @Override
+        public Object stringToValue(String text) throws ParseException {
+            return dateFormatter.parseObject(text);
+        }
+
+        @Override
+        public String valueToString(Object value) throws ParseException {
+            if (value != null) {
+                Calendar cal = (Calendar) value;
+                return dateFormatter.format(cal.getTime());
+            }
+
+            return "";
+        }
 
     }
 
-    private static void createWindow(Vector<String> times) {
+
+    private static String createWindow(Vector<String> times) {
         final String[] input = {""};
-        JFrame frame = new JFrame("Swing Tester");
-        JTextField jt = new JTextField("Enter Date");
-        frame.add(jt);
-        jt.addActionListener(new ActionListener() {
+        JFrame frame = new JFrame("Pick a Date using ... button");
+        UtilDateModel model = new UtilDateModel();
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        frame.add(datePicker);
+
+        datePicker.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // get date as a string
-                input[0] = jt.getText();
+                input[0] = datePicker.getJFormattedTextField().getText();
 
-//                System.out.println("Input value: " + input[0]);
-//                System.out.println("\nTimes value: " + times.toString());
+                System.out.println("Input value: " + input[0]);
+                System.out.println("\nTimes value: " + times.toString());
                 data.updateColumns(input[0], times);
                 // Update the original file with new Columns of the date we chose
                 //data.updateColumns(input[0]);
@@ -108,6 +143,7 @@ public class AttendanceLoader extends Menu_Bar {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
+        return input[0];
     }
 
 }
