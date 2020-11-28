@@ -1,3 +1,26 @@
+/**
+ * Name			Rebecca Kraft
+ *				Justin De Ocampo
+ *				Kevin Weinhold
+ *				Ishrar Zaman
+ * 				Lingge Zhang
+ *
+ * Email 		rmkraft@asu.edu
+ * 				jcdeocam@asu.edu
+ * 				kweinho2@asu.edu
+ *				izaman1@asu.edu
+ * 				lzhan264@asu.edu
+ *
+ * Class		CSE 360	70605
+ * Final Project
+ *
+ * This class displays a scatter plot based on the data of students' 
+ * attendance. The X axis is % of Attendance and the Y axis is Number 
+ * of students. 
+ *
+ * @author
+ *
+ */
 import java.awt.Color;
 import java.util.Vector;
 
@@ -12,6 +35,13 @@ import javax.swing.*;
 public class ScatterPlot extends DataTable{
     XYDataset dataset = createDataset();
 
+    /**
+     * This method obtains the data from DataTable and
+     * calculates the percentage of attendance of each
+     * student. Then it counts the numbers of the students
+     * that have same percentage of attendance.
+     * @return a XYDataset
+     */
     XYDataset createDataset()
     {
         XYSeriesCollection dataset = new XYSeriesCollection();
@@ -42,6 +72,11 @@ public class ScatterPlot extends DataTable{
         return dataset;
     }
 
+    /**
+     * This method creates a new java frame that can display
+     * scatter plot using the XYDataset from DataTable.
+     * @param data a dataset that is obtained from DataTable
+     */
     private static void createWindow(XYDataset data) {
         final String[] input = {""};
         JFrame frame = new JFrame("Scatter Plot");
