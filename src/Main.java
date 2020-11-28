@@ -1,3 +1,27 @@
+/**
+ * Name			Rebecca Kraft
+ *				Justin De Ocampo
+ *				Kevin Weinhold
+ *				Ishrar Zaman
+ * 				Lingge Zhang
+ *
+ * Email 		rmkraft@asu.edu
+ * 				jcdeocam@asu.edu
+ * 				kweinho2@asu.edu
+ *				izaman1@asu.edu
+ * 				lzhan264@asu.edu
+ *
+ * Class		CSE 360	70605
+ * Final Project
+ *
+ * This class displays a window that allows users to do some operations such as
+ * load roster, add attendance, save, and plot data. Team information can be checked
+ * in About menu.
+ *
+ * @author
+ *
+ */
+
 import javax.print.attribute.standard.JobPriority;
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +49,10 @@ public class Main extends JFrame {
         frame.setVisible(true);
     }
 
+     /**
+     * Main function that displays GUI.
+     * @param args
+     */
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
