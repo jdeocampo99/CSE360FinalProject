@@ -1,4 +1,25 @@
-
+/**
+ * Name			Rebecca Kraft
+ *				Justin De Ocampo
+ *				Kevin Weinhold
+ *				Ishrar Zaman
+ * 				Lingge Zhang
+ *
+ * Email 		rmkraft@asu.edu
+ * 				jcdeocam@asu.edu
+ * 				kweinho2@asu.edu
+ *				izaman1@asu.edu
+ * 				lzhan264@asu.edu
+ *
+ * Class		CSE 360	70605
+ * Final Project
+ *
+ * This class allows users to export the table as an cvs file
+ * to certain path.
+ *
+ * @author
+ *
+ */
 import javax.swing.*;
 import javax.swing.table.TableModel;
 import java.io.File;
@@ -10,6 +31,9 @@ import java.util.ArrayList;
 
 public class Saver extends DataTable{
 
+     /**
+     * This method asks users to find a location and exports the file to the location.
+     */
     public void exportToCSV() {
 
         //Create a file chooser so the user can export the file to any location they wish
