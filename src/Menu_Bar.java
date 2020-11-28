@@ -1,3 +1,25 @@
+/**
+ * Name			Rebecca Kraft
+ *				Justin De Ocampo
+ *				Kevin Weinhold
+ *				Ishrar Zaman
+ * 				Lingge Zhang
+ *
+ * Email 		rmkraft@asu.edu
+ * 				jcdeocam@asu.edu
+ * 				kweinho2@asu.edu
+ *				izaman1@asu.edu
+ * 				lzhan264@asu.edu
+ *
+ * Class		CSE 360	70605
+ * Final Project
+ *
+ * This class displays the dropdown menu in the user interface.
+ *
+ * @author
+ *
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +40,11 @@ public class Menu_Bar extends Main implements ActionListener {
 
     // initalize tableInfo
     static ArrayList<String[]> tableInfo;
-    //Renders the menu bar and its sub components
+     
+    /**
+     * Renders the menu bar and its sub components
+     * @return a JMenuBar
+     */
     public JMenuBar createMenuBar()  {
         menubar = new JMenuBar();
         //initializing file menu and its items
