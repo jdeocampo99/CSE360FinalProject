@@ -1,3 +1,27 @@
+/**
+ * Name			Rebecca Kraft
+ *				Justin De Ocampo
+ *				Kevin Weinhold
+ *				Ishrar Zaman
+ * 				Lingge Zhang
+ *
+ * Email 		rmkraft@asu.edu
+ * 				jcdeocam@asu.edu
+ * 				kweinho2@asu.edu
+ *				izaman1@asu.edu
+ * 				lzhan264@asu.edu
+ *
+ * Class		CSE 360	70605
+ * Final Project
+ *
+ * This class will ask user to select a attendance file and a
+ * date of the attendance. Then the class will display the
+ * attendance of each student at the end of the table.
+ *
+ * @author
+ *
+ */
+
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -21,6 +45,10 @@ public class AttendanceLoader extends Menu_Bar {
     Vector<String> times = new Vector<>();
     static ArrayList<String[]> attendanceInfo = new ArrayList<>();
 
+    /**
+     * This method asks user for a file path. Then add the attendance
+     * at the end of the table
+     */
     public void chooseAttendanceFile() {
 
         try {
@@ -78,7 +106,12 @@ public class AttendanceLoader extends Menu_Bar {
             System.out.println("Error: Invalid CSV");
         }
     }
-//dont think this class is needed anymore
+    
+     /**
+     * This method asks users to select a date
+     * @param times a vector to hold the times string
+     * @return  a string of date
+     */
     public String pickDate(Vector<String> times) {
 
         String input = createWindow(times);
@@ -88,8 +121,10 @@ public class AttendanceLoader extends Menu_Bar {
 
         return input;
     }
-
-//need this class for date picker
+     
+    /**
+     * This class is needed for date picker
+     */
     public static class DateLabelFormatter extends AbstractFormatter {
         private String datePattern = "MM-dd-yyyy";
         private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
@@ -111,7 +146,13 @@ public class AttendanceLoader extends Menu_Bar {
 
     }
 
-
+     /**
+     * This is a helper function creates a new JFrame that allows users to
+     * pick a date in a new window.
+     *
+     * @param times a vector to hold the times string
+     * @return a string of date
+     */
     private static String createWindow(Vector<String> times) {
         final String[] input = {""};
         JFrame frame = new JFrame("Pick a Date using ... button");
