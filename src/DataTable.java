@@ -57,9 +57,7 @@ public class DataTable extends RosterLoader {
 
         JScrollPane scroller = new JScrollPane(table);
         JScrollBar hbar=new JScrollBar(JScrollBar.HORIZONTAL);
-        JScrollBar vbar=new JScrollBar(JScrollBar.VERTICAL);
         frame.add(hbar,BorderLayout.SOUTH);
-        frame.add(vbar,BorderLayout.EAST);
         frame.add(scroller);
         frame.revalidate();
 
