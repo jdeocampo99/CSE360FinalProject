@@ -16,7 +16,7 @@
  *
  * This class displays the dropdown menu in the user interface.
  *
- * @author
+ * @author Justin De Ocampo
  *
  */
 

@@ -18,7 +18,7 @@
  * load roster, add attendance, save, and plot data. Team information can be checked
  * in About menu.
  *
- * @author
+ * @author Justin De Ocampo, Rebecca Kraft
  *
  */
 

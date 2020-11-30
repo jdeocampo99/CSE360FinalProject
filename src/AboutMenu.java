@@ -16,7 +16,7 @@
  * 
  * This class displays group members' names in a dialog box. 
  * 
- * @author 		
+ * @author 	Justin De Ocampo, Rebecca Kraft
  * 
  */
 

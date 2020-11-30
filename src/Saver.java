@@ -17,7 +17,7 @@
  * This class allows users to export the table as an cvs file
  * to certain path.
  *
- * @author
+ * @author Justin De Ocampo
  *
  */
 import javax.swing.*;

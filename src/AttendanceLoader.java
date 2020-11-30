@@ -18,7 +18,7 @@
  * date of the attendance. Then the class will display the
  * attendance of each student at the end of the table.
  *
- * @author
+ * @author Kevin Weinhold, Rebecca Kraft, Lingge Zhang
  *
  */
 import org.jdatepicker.impl.JDatePanelImpl;

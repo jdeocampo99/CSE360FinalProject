@@ -16,7 +16,7 @@
  *
  * This class displays the data in roster file using JTable.
  *
- * @author
+ * @author Justin De Ocampo, Kevin Weinhold
  *
  */
 import javax.swing.*;

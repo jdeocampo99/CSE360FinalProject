@@ -16,7 +16,7 @@
  *
  * This class asks users to load a roster file.
  *
- * @author
+ * @author Justin De Ocampo
  *
  */
 import javax.swing.*;
