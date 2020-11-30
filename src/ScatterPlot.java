@@ -62,6 +62,11 @@ public class ScatterPlot extends DataTable{
                     }
                 }
                 percentAttendance = (Double.parseDouble((String)table.getValueAt(j,i))/75)*100;
+                 if(percentAttendance >= 100)
+                {
+                    percentAttendance = 100;
+                    studentCount++;
+                }
                 series.add(percentAttendance,studentCount);
             }
             dataset.addSeries(series);
