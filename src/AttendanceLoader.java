@@ -153,6 +153,7 @@ public class AttendanceLoader extends Menu_Bar {
     /**
      * This class is needed for date picker
      */
+    //@author Rebecca Kraft
     public static class DateLabelFormatter extends AbstractFormatter {
         private String datePattern = "MM-dd-yyyy";
         private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
