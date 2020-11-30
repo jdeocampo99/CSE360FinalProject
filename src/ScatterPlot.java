@@ -45,7 +45,7 @@ public class ScatterPlot extends DataTable{
     XYDataset createDataset()
     {
         XYSeriesCollection dataset = new XYSeriesCollection();
-        int numStudents = table.getRowCount();
+        int numStudents = table.getRowCount()-1;
         double percentAttendance;
         int studentCount;
 
