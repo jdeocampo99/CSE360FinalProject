@@ -18,7 +18,8 @@
  * attendance. The X axis is % of Attendance and the Y axis is Number 
  * of students. 
  *
- * @author
+ * @author Ishrar Zaman
+ * @author Rebecca Kraft
  *
  */
 import java.awt.Color;
