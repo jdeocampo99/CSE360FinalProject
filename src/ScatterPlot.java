@@ -33,7 +33,7 @@ import org.jfree.data.xy.XYDataset;
 import javax.swing.*;
 
 public class ScatterPlot extends DataTable{
-    XYDataset dataset = createDataset();
+   
 
     /**
      * This method obtains the data from DataTable and
