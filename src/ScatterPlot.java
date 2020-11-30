@@ -1,14 +1,14 @@
 /**
- * Name			Rebecca Kraft
+ * Name		Rebecca Kraft
  *				Justin De Ocampo
  *				Kevin Weinhold
  *				Ishrar Zaman
- * 				Lingge Zhang
+ * 			Lingge Zhang
  *
  * Email 		rmkraft@asu.edu
  * 				jcdeocam@asu.edu
  * 				kweinho2@asu.edu
- *				izaman1@asu.edu
+ *				   izaman1@asu.edu
  * 				lzhan264@asu.edu
  *
  * Class		CSE 360	70605
@@ -46,6 +46,7 @@ public class ScatterPlot extends DataTable{
     XYDataset createDataset()
     {
         XYSeriesCollection dataset = new XYSeriesCollection();
+        //retrieve total number of students on roster
         int numStudents = table.getRowCount()-1;
         double percentAttendance;
         int studentCount;
@@ -58,10 +59,12 @@ public class ScatterPlot extends DataTable{
                 studentCount = 0;
                 for(int k = 0; k<numStudents; k++)
                 {
+                    //check if two students have same minutes of attendance on same date
                     if (Integer.parseInt((String)table.getValueAt(k,i)) == Integer.parseInt((String)table.getValueAt(j,i))) {
                         studentCount++;
                     }
                 }
+                //calculate a student's percent attendance at a certain date
                 percentAttendance = (Double.parseDouble((String)table.getValueAt(j,i))/75)*100;
                  if(percentAttendance >= 100)
                 {
